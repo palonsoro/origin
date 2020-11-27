@@ -155,6 +155,7 @@ HTTP server: The kubelet can also listen for HTTP and respond to a simple API
 				cmd.Usage()
 				klog.Fatal(err)
 			}
+			klog.Warning("This is test binary only intended to reproduce the issue reported at Red Hat Support Case 02793712. Any other use of this binary is UNSUPPORTED and discouraged")
 
 			// check if there are non-flag arguments in the command line
 			cmds := cleanFlagSet.Args()

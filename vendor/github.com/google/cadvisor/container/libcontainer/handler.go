@@ -236,6 +236,7 @@ func schedulerStatsFromProcs(rootFs string, pids []int, pidMetricsCache map[int]
 
 func networkStatsFromProc(rootFs string, pid int) ([]info.InterfaceStats, error) {
 	netStatsFile := path.Join(rootFs, "proc", strconv.Itoa(pid), "/net/dev")
+	klog.V(2).Infof("CUSTOM processing netdev stats of file: %s", netStatsFile)
 
 	ifaceStats, err := scanInterfaceStats(netStatsFile)
 	if err != nil {
@@ -277,6 +278,7 @@ func scanInterfaceStats(netStatsFile string) ([]info.InterfaceStats, error) {
 	stats := []info.InterfaceStats{}
 	for scanner.Scan() {
 		line := scanner.Text()
+		klog.V(2).Infof("CUSTOM processing line: %s", line)
 		line = strings.Replace(line, ":", "", -1)
 
 		fields := strings.Fields(line)
